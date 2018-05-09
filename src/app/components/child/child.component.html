@@ -1,0 +1,23 @@
+<div *ngFor="let childNode of personArray;let childIndex=index">
+  <div *ngIf="person.parentId === null">
+    <div *ngIf="person.id === childNode.parentId || person.id === childNode.id">
+      <div *ngIf="person.id === childNode.id">
+        <div style="float: left;"> {{childNode.name}} -- Root Node</div>
+        <button (click)="addChild(childNode)"> +</button>
+        <button (click)="deleteChild(childNode)"> -</button>
+      </div>
+      <div *ngIf="person.id !== childNode.id">
+        <div style="float: left;"> {{childNode.name}}--Son of {{person.name}}</div>
+        <button (click)="addChild(childNode)"> +</button>
+        <button (click)="deleteChild(childNode)"> -</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="person.parentId !== null">
+    <div *ngIf="childNode.parentId === person.id">
+      <div style="float: left;"> {{childNode.name}}-- Son of {{person.name}} </div>
+      <button (click)="addChild(childNode)"> +</button>
+      <button (click)="deleteChild(childNode)"> -</button>
+    </div>
+  </div>
+</div>

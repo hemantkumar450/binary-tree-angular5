@@ -1,0 +1,28 @@
+<div *ngFor="let person of persons;let parentIndex=index">
+  <app-child-component [personArray]="persons" [person]="person" (deleteRow)="deleteRow()" (addRow)="addRow($event)"></app-child-component>
+  <br>
+</div>
+
+<div *ngIf="isActive">
+  <input type="text" [(ngModel)]="node.name">
+  <button (click)="saveNode()">Create Node</button>
+  <button (click)="cancel()">cancel</button>
+  <br/>
+</div>
+
+
+<button (click)="showJson()">save</button>
+
+
+<div *ngIf="isShowJson">
+  <div *ngFor="let person of persons;let parentIndex=index">
+    <label>
+      <b>Person:</b>
+    </label>
+    <div> Id: {{person.id}}; </div>
+    <div> Level: {{person.level}};</div>
+    <div *ngIf="person.parentId === null"> ParentId: null </div>
+    <div *ngIf="person.parentId !== null"> ParentId: {{person.parentId}}; </div>
+    <div>Name: {{person.name}};</div>
+  </div>
+</div>
